@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guan Jian</title>
+    <style>
+        /* General Styles */
+        body {
+            cursor: url("image.png"), auto;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://avatarfiles.alphacoders.com/375/thumb-1920-375109.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 26px;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 12px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        /* Content Section */
+        .content, .message-board, .calculator {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            margin: 20px auto;
+            max-width: 900px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+        }
+
+        .content p {
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        /* Calculator Section */
+        .calculator input, .calculator select, .message-board input, .message-board textarea {
+            width: calc(30% - 10px);
+            padding: 12px;
+            margin: 8px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .calculator button, .message-board button {
+            padding: 12px 20px;
+            font-size: 18px;
+            margin-top: 15px;
+            background-color: #4a4a4a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .calculator button:hover, .message-board button:hover {
+            background-color: #333;
+        }
+
+        /* Footer Section */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 14px;
+            margin-top: auto;
+        }
+
+        .footer a {
+            color: #add8e6;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Message Board Specific */
+        .message-board ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .message-board ul li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.85);
+            color: black;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Welcome to Guan Jian's Personal Page</h1>
+    </div>
+
+    <!-- Navigation Section -->
+    <nav>
+        <a href="#" onclick="showHome()">Home</a>
+        <a href="#" onclick="showCalculator()">Calculator</a>
+        <a href="#" onclick="showMessageBoard()">Message Board</a>
+    </nav>
+
+    <!-- Content Section (Home Page) -->
+    <div class="content" id="content">
+        p>Hi, this is just for the people who don't know me.</p>
+        <p>I am a normal student of Han Chiang, student ID 231263, and this is a website for me.</p>
+        <p>If you want to get to know me, just send a WhatsApp. My phone number is at the bottom!</p>
+        <p>My hobby is watching anime and playing video games, especially Valorant. But I have UEC exams, so wait for me until I am in Form 4.</p>
+        
+        <p>Thank you for visiting my page!</p>
+    </div>
+
+    <!-- Calculator Section -->
+    <div class="calculator" id="calculator">
+        <h2>Simple Calculator</h2>
+        <input type="number" id="num1" placeholder="Enter first number">
+        <input type="number" id="num2" placeholder="Enter second number">
+        <select id="operation">
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">×</option>
+            <option value="divide">÷</option>
+        </select>
+        <button onclick="calculate()">Calculate</button>
+        <p id="result"></p>
+    </div>
+
+    <!-- Message Board Section -->
+    <div class="message-board" id="message-board">
+        <h2>Message Board</h2>
+        <input type="text" id="name" placeholder="Your Name">
+        <textarea id="message" placeholder="Your Message"></textarea>
+        <button onclick="postMessage()">Submit</button>
+        <div id="messages">
+            <h3>Messages</h3>
+            <ul id="message-list"></ul>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>This website is owned by Guan Jian.</p>
+    </div>
+
+    <script>
+        function showHome() {
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('calculator').style.display = 'none';
+            document.getElementById('message-board').style.display = 'none';
+        }
+
+        function showCalculator() {
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('calculator').style.display = 'block';
+            document.getElementById('message-board').style.display = 'none';
+        }
+
+        function showMessageBoard() {
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('calculator').style.display = 'none';
+            document.getElementById('message-board').style.display = 'block';
+            fetchMessages();
+        }
+
+        function fetchMessages() {
+            fetch('http://127.0.0.1:5000/api/messages')
+                .then(response => response.json())
+                .then(messages => {
+                    const messageList = document.getElementById('message-list');
+                    messageList.innerHTML = '';
+                    messages.forEach(msg => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${msg.name}:</strong> ${msg.message}`;
+                        messageList.appendChild(li);
+                    });
+                });
+        }
+
+        function postMessage() {
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+
+            fetch('http://127.0.0.1:5000/api/messages', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, message })
+            })
+                .then(() => fetchMessages());
+        }
+
+        showHome();
+    </script>
+</body>
+</html>
